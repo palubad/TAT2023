@@ -25,8 +25,8 @@ https://github.com/palubad/TAT2023/blob/main/LICENSE
 // --------------------------- 1. INITIAL SETTINGS  ---------------------------------------
 // ========================================================================================
 // Predefined points
-var point1 = /* color: #98ff00 */ee.Geometry.Point([14.055739719810475, 50.04572788066695]),
-    point2 = /* color: #0b4a8b */ee.Geometry.Point([13.970878116242433, 50.019864275901426]);
+var point1 = /* color: #98ff00 */ee.Geometry.Point([14.826519726417349, 49.793139465625394]),
+    point2 = /* color: #0b4a8b */ee.Geometry.Point([14.824955315575478, 49.795850547641166]);
 
 // set start and end date
 var startDate = '2019-01-01',
@@ -44,6 +44,8 @@ var max_clouds = 50;
 var listOfOpticalVIs = ['NDVI', 'EVI', 'NBR', 'NDMI'];
 var listOfSARfeatures = ['VV','VH','RVI', 'RFDI'];
 
+// Center map view to the selected point
+Map.centerObject(selected,17);
 
 // ========================================================================================
 // --------------------------- 2. LOAD THE DATA  ------------------------------------------
