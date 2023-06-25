@@ -165,5 +165,5 @@ print('Time-series of optical VI', IndicesChartOriginal);
 // Add a time series chart for VV and VH polarizations for the selected point
 QUIZ
 
-// Add a time series chart for selected polarizations indiices for the selected point
+// Add a time series chart for selected polarization indices for the selected point
 QUIZ
