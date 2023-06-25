@@ -15,6 +15,8 @@ and converting SAR data to decibel scale are also added.
 The code further creates time series charts for the selected optical vegetation 
 indices and SAR features.
 
+Note: This is the "solution" code - how the final should look like.
+
 © This code is published under MIT License: 
 https://github.com/palubad/TAT2023/blob/main/LICENSE
 */
@@ -46,6 +48,18 @@ var listOfSARfeatures = ['VV','VH','RVI', 'RFDI'];
 // ========================================================================================
 // --------------------------- 2. LOAD THE DATA  ------------------------------------------
 // ========================================================================================
+// Load Sentinel-1 data
+var S1Collection = ee.ImageCollection('COPERNICUS/S1_GRD_FLOAT')
+                  .filterBounds(selected)
+                  .filterDate(startDate, endDate)
+                  
+                  // UNCOMMENT if you want to use only images from the same path and orbit 
+                  // .filter(ee.Filter.eq('orbitProperties_pass','ASCENDING'))
+                  // .filter(ee.Filter.lt('relativeOrbitNumber_start',146));
+
+// Check out the size of our S1 image collection
+print('S-1 collection size:', S1Collection.size());
+
 // Load Sentinel-2 data
 var S2 = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
           .filterBounds(selected)
@@ -54,17 +68,6 @@ var S2 = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 
 // Check out the size of our S2 image collection
 print('S-2 collection size:', S2.size());
-
-// Load Sentinel-1 data
-var S1Collection = ee.ImageCollection('COPERNICUS/S1_GRD_FLOAT')
-                  .filterBounds(selected)
-                  .filterDate(startDate, endDate)
-                  .filter(ee.Filter.eq('orbitProperties_pass','ASCENDING'))
-                  .filter(ee.Filter.lt('relativeOrbitNumber_start',146));
-
-// Check out the size of our S1 image collection
-print('S-1 collection size:', S1Collection.size());
-
 
 // ========================================================================================
 // --------------------------- 3. DEFINE FUCTIONS -----------------------------------------
@@ -126,10 +129,10 @@ var addSARIndices = function(img) {
 // --------------------------- 4. APPLY THE FUCTIONS --------------------------------------
 // ========================================================================================
 
-// apply the function to mask out clouds, their shadows and snow cover in Sentinel-2 images
+// Apply the function to mask out clouds, their shadows and snow cover in Sentinel-2 images
 S2 = maskClouds.maskClouds(S2,startDate,endDate,selected,max_clouds);
 
-// add optical vegetation indices and select only the defined optical vegetation indices
+// Add optical vegetation indices and select only the defined optical vegetation indices
 S2 = S2.map(addOpticalVI).select(listOfOpticalVIs)
 
 // Add SAR polarimetric indices, convert VV and VH to dB scale and select the SAR features
