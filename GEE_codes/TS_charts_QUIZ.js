@@ -46,6 +46,8 @@ var max_clouds = 50;
 var listOfOpticalVIs = ['NDVI', 'EVI', 'NBR', 'NDMI'];
 var listOfSARfeatures = ['VV','VH','RVI', 'RFDI'];
 
+// Center map view to the selected point
+Map.centerObject(selected,17);
 
 // ========================================================================================
 // --------------------------- 2. LOAD THE DATA  ------------------------------------------
