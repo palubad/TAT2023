@@ -21,6 +21,10 @@ you do. You can get inspiration from the "solution" code.
 
 © This code is published under MIT License: 
 https://github.com/palubad/TAT2023/blob/main/LICENSE
+
+Contacts:
+email: palubad@natur.cuni.cz
+LinkedIn: https://www.linkedin.com/in/daniel-paluba/
 */
 
 // ========================================================================================
